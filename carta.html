@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Una Sorpresa</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            color: white;
+            background: linear-gradient(315deg, #5c001f, #8a002e, #4a0019);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- CONTENEDORES DE PÁGINA --- */
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            perspective: 1000px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-weight: normal;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: scale(1.03); 
+        }
+        
+        
+        .photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin: 2rem 0;
+            
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            
+            transform: rotateY(90deg);
+        }
+
+        .photo.is-visible {
+            transform: rotateY(0deg);
+        }
+
+        p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        .reveal-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .reveal-button:hover, .reveal-button:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        #page2 {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <section id="page1" class="page">
+        <h1 id="titleReveal" title="Titulo #1">Para Alyssa</h1>
+        
+        <img id="hiddenPhoto" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Habichuelas_con_dulce_dominicana.jpg/1200px-Habichuelas_con_dulce_dominicana.jpg" alt="Foto" class="photo" title="foto #1">
+        
+        <p>
+            Mi familia dice que gracias por lo que dices sobre ellos. Te invitaran para la proxima (si es que da).
+        </p>
+
+       
+        <a href="#page2" id="revealBtn" class="reveal-button">Kinda clingy letter here</a>
+    </section>
+
+    <section id="page2" class="page">
+        <p>
+           Esto no es un intento de hacerte cambiar de opinion o algo por el estilo. Esto es algo que lamento no haber
+            hecho antes de la situacion actual ya que no solo cuando las cosas esten mal se debe de demostrar el aprecio
+            que se tiene por alguien. Por ende, se que lo hice mal y que palabras vacias no bastan. Con esto no espero
+            una respuesta, simplemente queria hacerte un gesto el cual debi hacer hace tiempo, seguirlo haciendo y demostrarte
+            Todos los dias lo mucho que me importas.
+            Espero que te gusten ♥️.
+
+        </p>
+    </section>
+
+    <script>
+        
+        const revealButton = document.getElementById('revealBtn');
+        const secondPage = document.getElementById('page2');
+        revealButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            secondPage.style.display = 'flex';
+            secondPage.scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        
+        const title = document.getElementById('titleReveal');
+        const photo = document.getElementById('hiddenPhoto');
+
+        
+        title.addEventListener('click', function() {
+            photo.classList.add('is-visible');
+        }, { once: true }); 
+
+    </script>
+
+</body>
+</html>
